@@ -127,7 +127,7 @@ public class membershipServlet extends HttpServlet {
                     
                     ArrayList<Tweet> tweets = new ArrayList<Tweet>();
                     tweets = TweetDB.selectTweets(); 
-                    session.setAttribute("users", user);
+                    session.setAttribute("users", users);
                     session.setAttribute("tweets", tweets); 
                     session.setAttribute("success",success); 
                     url = "/home.jsp"; 

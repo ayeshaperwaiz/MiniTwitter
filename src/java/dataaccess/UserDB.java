@@ -161,6 +161,10 @@ public class UserDB {
                User user = new User();  
                user.setUserName(rs.getString("username"));
                user.setFullName(rs.getString("fullname"));
+               user.setBirthDate(rs.getString("birthdate"));
+               user.setPassword(rs.getString("password"));
+               user.setQuestionNo(rs.getString("questionNo"));
+               user.setAnswer(rs.getString("answer"));
                
                users.add(user);   
 
