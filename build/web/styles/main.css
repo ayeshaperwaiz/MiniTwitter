@@ -1,0 +1,192 @@
+*{
+  margin: 0 auto;
+  padding: 0;
+
+}
+
+body{
+  background-image:url('../img/image1.jpg');
+  background-attachment: fixed;
+  font-family: Tahoma;
+  background: #e9eaea; 
+
+}
+
+.notVisible{
+  display: none;
+}
+
+.isVisible{
+  position: relative;
+  right: -350px;
+  font-family: tahoma;
+}
+
+.isVisible2{
+  position: relative;
+  font-family: tahoma;
+  font-size: 14px;
+  margin-top: -15px;
+}
+
+.errorMessage{
+  position: relative;
+  font-family: tahoma;
+  font-size: 14px;
+  margin-top: -15px;
+  color: #FF0000;
+}
+
+.login-block{
+  width: 450px;
+  margin: 70px auto;
+  letter-spacing: 1px;
+}
+
+.signup,.login,.forgot{
+  width: 50%;
+  background: #fff;
+  height: 60px;
+  float: left;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.signup-form,.login-form, .forgot-form{
+  background: #fff;
+  box-sizing: border-box;
+  padding: 40px;
+  clear: both;
+  width: 100%;
+  height: 400px auto;
+  box-shadow: 0px 0px 20px #888888;
+}
+
+.signup-continue{
+  background: #fff;
+  box-sizing: border-box;
+  padding: 40px;
+  clear: both;
+  width: 100%;
+  height: 700px;
+  box-shadow: 0px 0px 20px #888888;
+}
+
+.input,.inputAnswer{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 2px solid #e9eaea;
+  color: #3e3e40;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.5s ease;
+  font-family: tahoma;
+}
+
+#passInput{
+    margin-bottom: 7px;
+}
+
+.link{
+  line-height: 5px;
+  margin-bottom: 30px;
+  color: #307CB0;
+  font-size: 12px;
+  text-decoration: none;
+  padding-left: 250px; 
+}
+
+.account{
+  color: #3e3e40;
+  font-size: 13px;
+  float: left; 
+}
+
+.link2{
+   color: #307CB0; 
+   font-size: 13px; 
+   text-decoration: none;
+   float: right; 
+   margin-right:213px;
+}
+
+.inputDate{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 2px solid #e9eaea;
+  color: #3e3e40;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.5s ease;
+  font-family: tahoma;
+}
+
+.input:focus,.inputDate:focus{
+  border: 2px solid #307CB0;
+}
+
+.btn,.btn1{
+  width: 100%;
+  background: #307CB0;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.btn:hover,.btn1:hover{
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  transform: translateY(-0.15em);
+}
+
+.footer{
+    width: 100%; 
+    line-height: 60px; 
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute; 
+    padding: 0px; 
+}
+
+.footerDate{
+    color: #307CB0;
+    text-align: center; 
+    font-size: 12px; 
+    font-family: Tahoma;
+    letter-spacing: 1px; 
+}
+
+.button{
+  width: 10%;
+  background: #307CB0;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  border-color: transparent;
+  font-size: 12px; 
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.button:hover{
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  transform: translateY(-0.15em);
+}

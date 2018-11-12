@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ch12_ex1_sqlGateway">
+<Resource name="jdbc/twitterdb" auth="Container"
+
+        driverClassName="com.mysql.jdbc.Driver"
+
+        url="jdbc:mysql://localhost:3306/twitterdb?autoReconnect=true"
+
+        username="root" password="Asap786m!"
+
+        maxActive="100" maxIdle="30" maxWait="10000"
+
+        logAbandoned="true" removeAbandoned="true"
+
+        removeAbandonedTimeout="60" type="javax.sql.DataSource" />
+</Context>

@@ -1,0 +1,127 @@
+.wrapper{
+  display:grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: (100px, auto);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  padding: 5em 2em 3em 2em;
+}
+
+.UserInfo{
+  /*align-self: start;*/
+  grid-column: 1/2;
+  grid-row: 1/10;
+  background-color: #fff;
+  position: static;
+}
+
+#avatar{
+  width: 100px;
+  height: 100px;
+  top:50%;
+  left:50%;
+  margin: 1em 0 0 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+}
+
+h1 {
+    font-size:20px;
+    font-weight:200;
+    color:black;
+    line-height:30px;
+    margin-bottom:0px;
+  }
+
+  h2{
+    font-size: 15px;
+    font-weight:200;
+    margin-top: 0px;
+  }
+
+.info{
+  height:50%;
+  background-color: #ddd;
+  margin: 1em 0 0 0;
+  padding: 1em;
+}
+
+.PostTwits{
+  /*align-self: start;*/
+  grid-column: auto; 
+  grid-row: 1/8;
+  background-color: #ddd;
+  padding: 1em;
+  background-color: #ffff;
+}
+
+.twitInput{
+  width: 100%;
+  height: 60px;
+  border: 2px solid #e9eaea;
+  color: #3e3e40;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.5s ease;
+  font-family: tahoma;
+  border-radius: 10px;
+}
+
+.twitInput:focus{
+  border: 2px solid #307CB0;
+}
+
+.btn{
+  width: 20%;
+  background: #307CB0;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin: 5px 0 5px 447px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 70px;
+}
+
+.btn:hover,.btn1:hover{
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  transform: translateY(-0.15em);
+}
+
+.Follow{
+  /*align-self: start;*/
+  grid-column: 3;
+  grid-row: 1/20;
+  background-color: #ddd;
+  padding: 1em;
+
+}
+
+.Trends{
+  grid-row: 15/20;
+  grid-column: 1;
+  background-color: #eee;
+  padding: 1em;
+}
+
+.Feed{
+  grid-row: 7/20 auto;
+  grid-column: 2;
+  background-color: #eee;
+  padding: 1em;
+}
+
+
+.tweet-card{
+  grid-row: 7/20 auto;
+  grid-column: 2;
+  background-color: blue;
+  padding: 1em;
+}
