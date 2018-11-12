@@ -40,7 +40,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Email: 
-                  <input name="emailAddress" type="text" class="input" value="<c:out value='${user.email}'/>" readOnly/>
+                  <input type="text" class="input" value="<c:out value='${user.email}'/>" readOnly/>
               </c:when>
               <c:otherwise>
                   <span id="email_error" class="notVisible">*</span>
@@ -53,7 +53,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Full Name: 
-                  <input name="fullname" type="text" class="input" value="<c:out value='${user.fullName}'/>">
+                  <input type="text" class="input" value="<c:out value='${user.fullName}'/>">
               </c:when>
               <c:otherwise>
                   <span id="fullName_error" class="notVisible">*</span>
@@ -68,7 +68,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Date of Birth:
-                  <input  name ="birthdate"type="text" value="<c:out value='${user.birthDate}'/>" class="inputDate" onfocus="(this.type='date')" onblur="(this.type='text')" ><br>
+                  <input type="text" value="<c:out value='${user.birthDate}'/>" class="inputDate" onfocus="(this.type='date')" onblur="(this.type='text')" ><br>
               </c:when>
               <c:otherwise>
                   <span id="DateOfBirth_error" class="notVisible">*</span>
@@ -80,7 +80,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Username:
-                  <input name ="username" type="text" class="input" value="<c:out value='${user.userName}'/>" readOnly/>
+                  <input type="text" class="input" value="<c:out value='${user.userName}'/>" readOnly/>
               </c:when>
               <c:otherwise>
                   <span id="username_error" class="notVisible">*</span>
@@ -93,7 +93,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Password: 
-                  <input name="password" type="password" class="input" value="<c:out value='${user.password}'/>" onkeyup="validatePassword()" >
+                  <input type="password" class="input" value="<c:out value='${user.password}'/>" onkeyup="validatePassword()" >
               </c:when>
               <c:otherwise>
                   <span id="pass_error" class="notVisible">*</span>
@@ -106,7 +106,7 @@
                   
           <c:choose>
               <c:when test="${user != null}">
-                  <input name = "confirm" type="password" class="input" onkeyup= "validateConfirmPassword()" placeholder="Confirm Password" >
+                  <input type="password" class="input" onkeyup= "validateConfirmPassword()" placeholder="Confirm Password" >
               </c:when>
               <c:otherwise>
                   <span id="confirm_error" class="notVisible">*</span>
@@ -119,7 +119,7 @@
                   
           <c:choose>
               <c:when test="${user != null}">
-                  <select name="questionNo" class="input" id="SecurityQuestion" value="<c:out value='${user.questionNo}'/>">
+                  <select  class="input" id="SecurityQuestion" value="<c:out value='${user.questionNo}'/>">
                     <option value="SQ" disbled slected>Security Question</option>
                     <option value="1">What is the name of your first pet?</option>
                     <option value="2">What is the make of your first car?</option>
