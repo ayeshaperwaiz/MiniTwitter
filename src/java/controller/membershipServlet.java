@@ -97,7 +97,15 @@ public class membershipServlet extends HttpServlet {
                     success = true; 
                     session.setAttribute("success",success); 
                     session.setAttribute("user", user);
-                    url = "/home.jsp";
+                    ArrayList<User> users = new ArrayList<User>();
+                    users = UserDB.selectUsers(); 
+                    
+                    ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+                    tweets = TweetDB.selectTweets(); 
+                    session.setAttribute("users", users);
+                    session.setAttribute("tweets", tweets); 
+                    session.setAttribute("success",success); 
+                    url = "/home.jsp"; 
 
             }       
 
