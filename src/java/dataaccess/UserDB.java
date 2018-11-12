@@ -143,4 +143,43 @@ public class UserDB {
         } 
        
     }
+   
+   public static ArrayList<User> selectUsers(){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        
+        String preparedSQL = "Select * FROM twitterdb.user;";
+        
+        try{
+           ArrayList<User> users = new ArrayList<User>();
+           ps = connection.prepareStatement(preparedSQL);
+           ResultSet rs = ps.executeQuery();
+                
+           
+           while (rs.next()){
+               User user = new User();  
+               user.setUserName(rs.getString("username"));
+               user.setFullName(rs.getString("fullname"));
+               
+               users.add(user);   
+
+           }
+            
+        
+           return users; 
+        }
+        
+        catch(SQLException e) {
+          for (Throwable t : e)
+              t.printStackTrace();
+              return null;
+        }
+        finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+                
+        
+    }
 }

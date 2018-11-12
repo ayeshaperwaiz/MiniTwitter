@@ -7,8 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import Util.MailUtilEmail;
+import business.Tweet;
 import javax.mail.*;
 import business.User;
+import dataaccess.TweetDB;
 
 import dataaccess.UserDB;
 
@@ -120,6 +122,13 @@ public class membershipServlet extends HttpServlet {
                     session.setAttribute("user", user); 
                     
                     success = true; 
+                    ArrayList<User> users = new ArrayList<User>();
+                    users = UserDB.selectUsers(); 
+                    
+                    ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+                    tweets = TweetDB.selectTweets(); 
+                    session.setAttribute("users", user);
+                    session.setAttribute("tweets", tweets); 
                     session.setAttribute("success",success); 
                     url = "/home.jsp"; 
                 }
@@ -174,7 +183,7 @@ public class membershipServlet extends HttpServlet {
                 }
             }
             
-            if(action.equals("update")){
+            if(action.equals("updateUser")){
                 fullname = request.getParameter("fullname");
                 emailAddress = request.getParameter("emailAddress");
                 birthdate = request.getParameter("birthdate");
@@ -193,7 +202,7 @@ public class membershipServlet extends HttpServlet {
                 UserDB.update(user);
                 
                 request.setAttribute("user", user); 
-                url = "/signup.jsp";
+                url = "/home.jsp";
             }
             
             getServletContext()

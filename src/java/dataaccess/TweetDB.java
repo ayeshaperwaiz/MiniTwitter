@@ -62,7 +62,56 @@ public class TweetDB {
                 tweet.setTime(rs.getString("time"));
                 tweet.setTweetUserID(rs.getString("userID"));
                 tweet.setTweetID(rs.getString("tweetID"));
-                tweets.add(tweet); 
+                
+                StringBuilder message = new StringBuilder(tweet.getTwit());
+                String newMessage = "";
+                int startInd = 0;
+                int tracker = 0;
+                int lengthT = message.length();
+                while (message.indexOf("@", startInd) != -1 && tracker <= lengthT) {
+                    int indexOf = message.indexOf("@", startInd);
+                    int indexOfSpace = message.indexOf(" ", indexOf + 1);
+                    if (indexOfSpace == -1) {
+                        indexOfSpace = message.length();
+                    }
+                    message = message.insert(indexOfSpace, "</a>");
+                    message = message.insert(indexOf, "<a class='blueX'>");
+                    newMessage = message.toString();
+
+                    startInd = indexOf + 21;
+                    lengthT = message.length();
+                    tracker++;
+                }
+               if (newMessage != "") {
+                    tweet.setTwit(newMessage);
+                    message = new StringBuilder(tweet.getTwit());
+                }
+
+                startInd = 0;
+                tracker = 0;
+                lengthT = message.length();
+
+                while (message.indexOf("#", startInd) != -1 && tracker <= lengthT) {
+                    int indexOf = message.indexOf("#", startInd);
+                    int indexOfSpace = message.indexOf(" ", indexOf + 1);
+                    if (indexOfSpace == -1) {
+                        indexOfSpace = message.length();
+                    }
+                    message = message.insert(indexOfSpace, "</a>");
+                    message = message.insert(indexOf, "<a class='blueX'>");
+                    newMessage = message.toString();
+
+                    startInd = indexOf + 21;
+                    lengthT = message.length();
+                    tracker++;
+                }
+
+                if (newMessage != "") {
+                    tweet.setTwit(newMessage);
+                }
+                
+                tweets.add(tweet);    
+            
            }
            
            return tweets; 

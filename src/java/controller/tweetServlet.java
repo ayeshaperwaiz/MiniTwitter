@@ -54,6 +54,7 @@ public class tweetServlet extends HttpServlet {
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
             tweets = TweetDB.selectTweets(); 
             session.setAttribute("tweets", tweets); 
+    
         }
         
         

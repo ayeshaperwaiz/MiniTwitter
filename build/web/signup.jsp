@@ -28,7 +28,7 @@
             
         <c:choose>
             <c:when test="${user != null}">
-                <input type = "hidden" name = "action" value = "update">
+                <input type = "hidden" name = "action" value = "updateUser">
             </c:when>  
             <c:otherwise>
                 <input type = "hidden" name = "action" value = "signup">
@@ -40,7 +40,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Email: 
-                  <input type="text" class="input" value="<c:out value='${user.email}'/>" readOnly/>
+                  <input id="email" name="emailAddress" type="text" class="input" value="<c:out value='${user.email}'/>" readOnly/>
               </c:when>
               <c:otherwise>
                   <span id="email_error" class="notVisible">*</span>
@@ -53,7 +53,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Full Name: 
-                  <input type="text" class="input" value="<c:out value='${user.fullName}'/>">
+                  <input id="fullName" name="fullname" type="text" class="input" value="<c:out value='${user.fullName}'/>">
               </c:when>
               <c:otherwise>
                   <span id="fullName_error" class="notVisible">*</span>
@@ -68,7 +68,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Date of Birth:
-                  <input type="text" value="<c:out value='${user.birthDate}'/>" class="inputDate" onfocus="(this.type='date')" onblur="(this.type='text')" ><br>
+                  <input name ="birthdate" type="text" value="<c:out value='${user.birthDate}'/>" class="inputDate" onfocus="(this.type='date')" onblur="(this.type='text')" ><br>
               </c:when>
               <c:otherwise>
                   <span id="DateOfBirth_error" class="notVisible">*</span>
@@ -80,7 +80,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Username:
-                  <input type="text" class="input" value="<c:out value='${user.userName}'/>" readOnly/>
+                  <input id="Username" name ="username" type="text" class="input" value="<c:out value='${user.userName}'/>" readOnly/>
               </c:when>
               <c:otherwise>
                   <span id="username_error" class="notVisible">*</span>
@@ -93,7 +93,7 @@
           <c:choose>
               <c:when test="${user != null}">
                   Password: 
-                  <input type="password" class="input" value="<c:out value='${user.password}'/>" onkeyup="validatePassword()" >
+                  <input id="pass" name="password" type="password" class="input" value="<c:out value='${user.password}'/>" onkeyup="validatePassword()" >
               </c:when>
               <c:otherwise>
                   <span id="pass_error" class="notVisible">*</span>
@@ -106,7 +106,7 @@
                   
           <c:choose>
               <c:when test="${user != null}">
-                  <input type="password" class="input" onkeyup= "validateConfirmPassword()" placeholder="Confirm Password" >
+                  <input id="confirmPas" name = "confirm" type="password" class="input" onkeyup= "validateConfirmPassword()" placeholder="Confirm Password" >
               </c:when>
               <c:otherwise>
                   <span id="confirm_error" class="notVisible">*</span>
@@ -117,18 +117,6 @@
                       
           </c:choose>
                   
-          <c:choose>
-              <c:when test="${user != null}">
-                  <select  class="input" id="SecurityQuestion" value="<c:out value='${user.questionNo}'/>">
-                    <option value="SQ" disbled slected>Security Question</option>
-                    <option value="1">What is the name of your first pet?</option>
-                    <option value="2">What is the make of your first car?</option>
-                    <option value="3">What is the name of your first school?</option>
-                </select>
-                Answer:
-                <input name ="answer" type="text" class="input" id="Answer" value="<c:out value='${user.answer}'/>">
-              </c:when>
-              <c:otherwise>
                 <select name="questionNo" class="input" id="SecurityQuestion" value="${user.questionNo}">
                     <option value="SQ" disbled slected>Security Question</option>
                     <option value="1">What is the name of your first pet?</option>
@@ -136,11 +124,8 @@
                     <option value="3">What is the name of your first school?</option>
                 </select>
                 <span id="answer_error" class="notVisible">*</span>
-                <br><input name ="answer" type="text" placeholder="Answer" class="inputAnswer" id="Answer" onkeyup="validateSecurity()" autocomplete="off" >
+                <br><input name ="answer" value="<c:out value='${user.answer}'/>" type="text" placeholder="Answer" class="inputAnswer" id="Answer" onkeyup="validateSecurity()" autocomplete="off" >
                 <div id ="errorMessage3" class ="notVisible"> Input has invalid characters! </div><br>
-              </c:otherwise>
-                      
-          </c:choose>
     
           <c:choose>
               <c:when test="${user != null}">
