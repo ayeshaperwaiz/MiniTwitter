@@ -1,6 +1,7 @@
 package business;
 import java.io.Serializable;
 import java.io.InputStream;
+import java.sql.Timestamp;
 
 /**
  *
@@ -18,6 +19,7 @@ public class User implements Serializable {
     private String password;
     private String questionNo;
     private String answer;
+    private Timestamp lastLogin;
     private InputStream profileURL;
 
     
@@ -118,5 +120,14 @@ public class User implements Serializable {
      public void setProfileURL(InputStream profileURL){
         this.profileURL = profileURL;
     }
+     
+     
+     
+   
+    public void setLastlogin()
+    {
+        this.lastLogin = new Timestamp(System.currentTimeMillis());
+    }
+    
     
 }

@@ -6,7 +6,7 @@
 
         url="jdbc:mysql://localhost:3306/twitterdb?autoReconnect=true"
 
-        username="root" password="Asap786m!"
+        username="root" password="Phuongnghi2031376"
 
         maxActive="100" maxIdle="30" maxWait="10000"
 

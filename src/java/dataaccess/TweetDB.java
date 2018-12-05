@@ -27,7 +27,7 @@ public class TweetDB {
             ps = connection.prepareStatement(preparedSQL);
             ps.setString(1, tweet.getTweetUserID());
             ps.setString(2, tweet.getTwit());
-            ps.setString(3, tweet.getTime());            
+            ps.setTimestamp(3, tweet.getTime());            
             
             ps.executeUpdate();
             return true;
@@ -59,7 +59,6 @@ public class TweetDB {
            while (rs.next()){
                 Tweet tweet = new Tweet(); 
                 tweet.setTwit(rs.getString("twit"));
-                tweet.setTime(rs.getString("time"));
                 tweet.setTweetUserID(rs.getString("userID"));
                 tweet.setTweetID(rs.getString("tweetID"));
                 

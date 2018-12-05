@@ -58,7 +58,6 @@ public class membershipServlet extends HttpServlet {
         if (action.equals("join")){
             url = "/signup.jsp"; 
         }
-
         if(action.equals("signup")){
             fullname = request.getParameter("fullname");
             emailAddress = request.getParameter("emailAddress");
@@ -153,6 +152,18 @@ public class membershipServlet extends HttpServlet {
                     .getRequestDispatcher(url)
                     .forward(request, response);
             
+        }
+        if (action.equals("logout"))   
+        {
+            User user = (User) session.getAttribute( "user");
+            UserDB.updateLastLogin(user.getEmail());
+            session.invalidate();
+            url= "/login.jsp";
+            
+            getServletContext()
+                    .getRequestDispatcher(url)
+                    .forward(request, response);
+        
         }
          
         if(action.equals("forgot")){
