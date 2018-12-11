@@ -28,9 +28,9 @@ public class UserDB {
             Statement statement = connection.createStatement();
 
             String preparedSQL = "Insert into user"
-                    + "(fullname, username, emailAddress, password, birthdate, questionNo, answer) "
+                    + "(fullname, username, emailAddress, password, birthdate, questionNo, answer,salt) "
                     + "Values"
-                    + " ('" + user.getFullName() + "','" + user.getUserName() + "','" + user.getEmail() + "','" + user.getPassword() + "','" + user.getBirthDate() + "','" + user.getQuestionNo() + "','" + user.getAnswer() + "')";
+                    + " ('" + user.getFullName() + "','" + user.getUserName() + "','" + user.getEmail() + "','" + user.getPassword() + "','" + user.getBirthDate() + "','" + user.getQuestionNo() + "','" + user.getAnswer() + "','" + user.getSalt() + "')";
 
             int result = statement.executeUpdate(preparedSQL);
 
@@ -83,7 +83,7 @@ public class UserDB {
                 user.setBirthDate(rs.getString("birthDate"));
                 user.setQuestionNo(rs.getString("questionNo"));
                 user.setAnswer(rs.getString("answer"));
-
+                user.setSalt(rs.getString("salt"));
             }
 
             return user;

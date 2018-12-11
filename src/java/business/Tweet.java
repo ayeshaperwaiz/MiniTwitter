@@ -1,13 +1,14 @@
 package business;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class Tweet implements Serializable{
     String tweetID;
     String tweetUserID;
     String tweetMentionID;
     String twit;
-    String time;
+    Timestamp time;
     
     public Tweet()
     {
@@ -15,14 +16,14 @@ public class Tweet implements Serializable{
         tweetUserID = "";
         tweetMentionID = "";
         twit = "";
-        time = "";
+        time = new Timestamp(System.currentTimeMillis());
     }
     
     public Tweet(String userID, String twit, String time)
     {
         this.tweetUserID = userID;
         this.twit = twit;
-        this.time = time;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
     
     public Tweet(String tweetID, String tweetUserID, String tweetMentionID, String twit, String time)
@@ -31,7 +32,7 @@ public class Tweet implements Serializable{
         this.tweetUserID = tweetUserID;
         this.tweetMentionID = tweetMentionID;
         this.twit = twit;
-        this.time = time;
+        this.time = new Timestamp(System.currentTimeMillis());
 
     }
     
@@ -71,11 +72,9 @@ public class Tweet implements Serializable{
     }
     
     
-    public void setTime(String time){
-        this.time = time;
-    }
     
-    public String getTime(){
+    
+    public Timestamp getTime(){
         return this.time;
     }
     

@@ -25,24 +25,18 @@
     <form name="membership" method="post" action="membership" onsubmit="return validateForm()" >
         <div id ="errorMessage" class ="notVisible"></div>
         <div class="signup-form" id="signup-form">
-            
-        <c:choose>
-            <c:when test="${user != null}">
-                <input type = "hidden" name = "action" value = "updateUser">
-            </c:when>  
-            <c:otherwise>
-                <input type = "hidden" name = "action" value = "signup">
-            </c:otherwise>
-        </c:choose> 
+
         
           <p class = "errorMessage">${message}</p><br>
           
           <c:choose>
               <c:when test="${user != null}">
+                  <input type = "hidden" name = "action" value = "updateUser">
                   Email: 
-                  <input id="email" name="emailAddress" type="text" class="input" value="<c:out value='${user.email}'/>" readOnly/>
+                  <input id="email" name="emailAddress" type="text" class="input" value="${user.email}" readOnly>
               </c:when>
               <c:otherwise>
+                   <input type = "hidden" name = "action" value = "signup">
                   <span id="email_error" class="notVisible">*</span>
                   <input name="emailAddress" type="email" placeholder="Email" class="input" id="email" autocomplete="off" onkeyup="validateEmail()">
                   <div id ="errorMessage5" class ="notVisible"> Input has invalid characters! </div><br>
@@ -129,7 +123,7 @@
     
           <c:choose>
               <c:when test="${user != null}">
-                  <input type="submit" name="submit" value="Update" class="btn">
+                  <input type="submit" name="submit" value="updateUser" class="submit">
               </c:when>
               <c:otherwise>
                   <input type="submit" name="submit" value="Sign Up" class="btn">

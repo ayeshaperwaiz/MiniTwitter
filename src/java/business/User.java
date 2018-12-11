@@ -21,7 +21,16 @@ public class User implements Serializable {
     private String answer;
     private Timestamp lastLogin;
     private InputStream profileURL;
+    private String salt;
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+    
     
     public User(){
         userID = "";
