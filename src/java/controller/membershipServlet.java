@@ -11,6 +11,7 @@ import Util.PasswordUtil;
 import business.Tweet;
 import javax.mail.*;
 import business.User;
+import business.hashtag;
 import dataaccess.TweetDB;
 
 import dataaccess.UserDB;
@@ -145,6 +146,11 @@ public class membershipServlet extends HttpServlet {
                     request.setAttribute("user", user);
                     session.setAttribute("user", user);
 
+                    ArrayList<hashtag> hashtags;
+                    hashtags = TweetDB.SelectH();
+                    session.setAttribute("hashtags", hashtags);
+                   
+
                     success = true;
                     ArrayList<User> users = new ArrayList<User>();
                     users = UserDB.selectUsers();
@@ -251,6 +257,11 @@ public class membershipServlet extends HttpServlet {
 
             request.setAttribute("user", user);
             url = "/home.jsp";
+            ArrayList<hashtag> hashtags;
+            hashtags = TweetDB.SelectH();
+            session.setAttribute("hashtag", hashtags);
+           
+
             getServletContext()
                     .getRequestDispatcher(url)
                     .forward(request, response);

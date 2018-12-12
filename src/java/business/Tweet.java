@@ -4,29 +4,27 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Tweet implements Serializable{
-    String tweetID;
-    String tweetUserID;
-    String tweetMentionID;
+    int tweetID;
+    int tweetUserID;
+    int tweetMentionID;
     String twit;
     Timestamp time;
     
     public Tweet()
     {
-        tweetID = "";
-        tweetUserID = "";
-        tweetMentionID = "";
+       
         twit = "";
         time = new Timestamp(System.currentTimeMillis());
     }
     
-    public Tweet(String userID, String twit, String time)
+    public Tweet(int userID, String twit, Timestamp time)
     {
         this.tweetUserID = userID;
         this.twit = twit;
         this.time = new Timestamp(System.currentTimeMillis());
     }
     
-    public Tweet(String tweetID, String tweetUserID, String tweetMentionID, String twit, String time)
+    public Tweet(int tweetID, int tweetUserID, int tweetMentionID, String twit, String time)
     {
         this.tweetID = tweetID;
         this.tweetUserID = tweetUserID;
@@ -36,29 +34,29 @@ public class Tweet implements Serializable{
 
     }
     
-    public void setTweetID(String tweetID){
+    public void setTweetID(int tweetID){
         this.tweetID = tweetID;
     }
     
-    public String getTweetID(){
+    public int getTweetID(){
         return this.tweetID;
     }
     
     
-    public void setTweetUserID(String tweetUserID){
+    public void setTweetUserID(int tweetUserID){
         this.tweetUserID = tweetUserID;
     }
     
-    public String getTweetUserID(){
+    public int getTweetUserID(){
         return this.tweetUserID;
     }
     
     
-    public void setTweetMentionID(String tweetMentionID){
+    public void setTweetMentionID(int tweetMentionID){
         this.tweetMentionID = tweetMentionID;
     }
     
-    public String getTweetMentionID(){
+    public int getTweetMentionID(){
         return this.tweetMentionID;
     }
     

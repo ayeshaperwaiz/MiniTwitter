@@ -76,6 +76,7 @@ public class UserDB {
             User user = new User();
 
             if (rs.next()) {
+                user.setUserID(rs.getInt("userID"));
                 user.setFullName(rs.getString("fullname"));
                 user.setUserName(rs.getString("username"));
                 user.setEmail(rs.getString("emailAddress"));
@@ -184,6 +185,7 @@ public class UserDB {
 
             while (rs.next()) {
                 User user = new User();
+                user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("username"));
                 user.setFullName(rs.getString("fullname"));
                 user.setBirthDate(rs.getString("birthdate"));
