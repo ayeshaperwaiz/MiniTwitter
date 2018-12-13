@@ -16,10 +16,10 @@
                 <nav>
                   <ul>
                     <li><a href="home.jsp">Home</a></li>
-                    <li><a href="#">Notifications</a></li>
+                    <li><a href="membership?action=notifications">Notifications</a></li>
                     <li><a href ="signup.jsp">Profile</a></li>
-                   <!-- <input name="logout" type="submit" class="button" value="logout">-->
-                    <a href = "membership?action=logout" >Logout</a> 
+                   
+                    <a style="color: white" href="membership?action=logout">Logout</a> 
                   </ul>
                 </nav>
             </div>

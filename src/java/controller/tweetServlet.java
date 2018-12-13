@@ -1,9 +1,11 @@
 package controller;
 
+import business.Follow;
 import business.User;
 import business.Tweet;
 import business.hashtag;
 import business.mentions;
+import dataaccess.FollowDB;
 import dataaccess.TweetDB;
 import dataaccess.UserDB;
 import java.io.IOException;
@@ -47,6 +49,56 @@ public class tweetServlet extends HttpServlet {
             postTweet(request, response);
 
         }
+        if (action.equals("pageHash") )
+        {
+          String page = request.getParameter("hashMessage");
+          ArrayList<hashtag> hashes = TweetDB.SelectOneH(page);
+          ArrayList<Tweet> hashTweets = new ArrayList<Tweet>();
+          
+          for(hashtag x : hashes){
+              Tweet tweet = new Tweet();
+              tweet = TweetDB.SelectOneT(x.getTweetID());
+              //String tst = tweet.getTwit();
+              hashTweets.add(tweet);
+              
+          
+          }
+          session.setAttribute("hashTweets", hashTweets);
+          url= "/hashtag.jsp";
+          
+        }
+        if (action.equals("follow_user")) {
+            String emailAddress= request.getParameter("emailAddress");
+
+            User thisUser = (User) session.getAttribute("user");
+            User followedUser = UserDB.search(emailAddress);
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String date = (String) dtf.format(now);
+
+            Follow follow = new Follow();
+            follow.setUserID(thisUser.getUserID());
+            follow.setFollowedUserID(followedUser.getUserID());
+            follow.setFollowDate(date);
+            FollowDB.insert(follow);
+        }
+        if (action.equals("unfollow_user")) {
+            String emailAddress= request.getParameter("emailAddress");
+
+            User thisUser = (User) session.getAttribute("user");
+            User followedUser = UserDB.search(emailAddress);
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String date = (String) dtf.format(now);
+
+            Follow follow = new Follow();
+            follow.setUserID(thisUser.getUserID());
+            follow.setFollowedUserID(followedUser.getUserID());
+            follow.setFollowDate(date);
+            FollowDB.insert(follow);
+        }
 
         if (action.equals("deleteTweet")) {
             String tweetID = request.getParameter("tweetID");
@@ -64,6 +116,8 @@ public class tweetServlet extends HttpServlet {
 
     }
 
+    
+    
     protected void postTweet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -87,7 +141,7 @@ public class tweetServlet extends HttpServlet {
             int SetUser = user.getUserID();
             
             if (tweet.equals(Twit) && SetUser == userID) {
-                int TweetID = tweets.get(i).getTweetUserID();
+                int TweetID = tweets.get(i).getTweetID();
 
                 String message = tweet;
                 String newMessage = "";

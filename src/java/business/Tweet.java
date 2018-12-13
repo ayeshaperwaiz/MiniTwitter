@@ -4,11 +4,19 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Tweet implements Serializable{
-    int tweetID;
-    int tweetUserID;
-    int tweetMentionID;
-    String twit;
-    Timestamp time;
+    private int tweetID;
+    private int tweetUserID;
+    private int tweetMentionID;
+
+    private String twit;
+    private Timestamp time;
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+      public Timestamp getTime() {
+        return time;
+    }
     
     public Tweet()
     {
@@ -34,6 +42,7 @@ public class Tweet implements Serializable{
 
     }
     
+    
     public void setTweetID(int tweetID){
         this.tweetID = tweetID;
     }
@@ -42,7 +51,7 @@ public class Tweet implements Serializable{
         return this.tweetID;
     }
     
-    
+  
     public void setTweetUserID(int tweetUserID){
         this.tweetUserID = tweetUserID;
     }
@@ -72,9 +81,7 @@ public class Tweet implements Serializable{
     
     
     
-    public Timestamp getTime(){
-        return this.time;
-    }
+
     
 
 }

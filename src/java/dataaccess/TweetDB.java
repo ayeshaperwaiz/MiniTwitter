@@ -109,10 +109,10 @@ public class TweetDB {
 
         try {
 
-           ps = connection.prepareStatement(preparedSQL);
-         
+            ps = connection.prepareStatement(preparedSQL);
+
             ResultSet rs = ps.executeQuery();
-            ArrayList <hashtag> hashes = new ArrayList <hashtag>();
+            ArrayList<hashtag> hashes = new ArrayList<hashtag>();
             while (rs.next()) {
 
                 hashtag hash = new hashtag();
@@ -122,18 +122,81 @@ public class TweetDB {
             return hashes;
         } catch (Exception e) {
             System.out.println(e);
-        }finally
-        {
+        } finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
-        
+
         }
         return null;
-        
+
+    }
+
+    public static ArrayList<hashtag> SelectOneH(String page) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String preparedSQL = "SELECT * FROM hashtag WHERE hashtagText=?";
+
+        try {
+
+            ps = connection.prepareStatement(preparedSQL);
+            ps.setString(1, page);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<hashtag> hashes = new ArrayList<hashtag>();
+            while (rs.next()) {
+
+                hashtag hash = new hashtag();
+                hash.setHashtagText(rs.getString("hashtagText"));
+                hash.setTweetID(rs.getInt("tweetID"));
+                hashes.add(hash);
+            }
+            return hashes;
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+
         }
-     
-        
-    
+        return null;
+
+    }
+
+    public static Tweet SelectOneT(int tweetID) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String preparedSQL = "SELECT * FROM twitterdb.tweet WHERE tweetID =?";
+
+        try {
+            ps= connection.prepareStatement(preparedSQL);
+            ps.setInt(1, tweetID);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                //Tweet tweet = new Tweet();
+                int ID = rs.getInt("tweetID");
+                String twit = rs.getString("twit");
+                int userID = rs.getInt("userID");
+                Timestamp time = rs.getTimestamp("time");
+                Tweet tweet = new Tweet(userID, twit, time);
+                /*tweet.setTwit(rs.getString("twit"));
+                tweet.setTweetUserID(rs.getInt("userID"));
+                tweet.setTweetID(rs.getInt("tweetID"));*/
+                
+                return tweet;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return null;
+
+    }
 
     public static String Search(String username) throws IOException {
 
@@ -223,11 +286,17 @@ public class TweetDB {
                     if (indexOfSpace == -1) {
                         indexOfSpace = message.length();
                     }
+                    newMessage = message.substring(indexOf + 1, indexOfSpace);
+                    message = message.insert(indexOf, "<a class='blueX' href=\"tweet?action=pageHash&hashMessage=" + newMessage + "\">");
+                    int PreLength = message.length();
+                    indexOfSpace += PreLength;
+                    indexOfSpace -= lengthT;
                     message = message.insert(indexOfSpace, "</a>");
-                    message = message.insert(indexOf, "<a class='blueX'>");
                     newMessage = message.toString();
+                    PreLength = newMessage.length();
+                    PreLength -= lengthT;
 
-                    startInd = indexOf + 21;
+                    startInd = indexOf + PreLength;
                     lengthT = message.length();
                     tracker++;
                 }
@@ -313,5 +382,60 @@ public class TweetDB {
         }
 
     }
+     public static ArrayList<Tweet> selectTweetNotifications(String username) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
+        String query = "Select * FROM tweetnotifications WHERE (mentionusername = ? AND tweetdate >= memberLastLogin)";
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+
+            while (rs.next()) {
+                Tweet tweet = new Tweet();
+                tweet.setTweetID(rs.getInt("tweetID"));
+                tweet.setTwit(rs.getString("tweet"));
+                tweet.setTweetMentionID(rs.getInt("tweetID"));
+                tweet.setTime(rs.getTimestamp("tweetdate"));
+
+                StringBuilder message = new StringBuilder(tweet.getTwit());
+                String newMessage = "";
+                int startInd = 0;
+                int tracker = 0;
+                int lengthT = message.length();
+                while (message.indexOf("@", startInd) != -1 && tracker <= lengthT) {
+                    int indexOf = message.indexOf("@", startInd);
+                    int indexOfSpace = message.indexOf(" ", indexOf + 1);
+                    if (indexOfSpace == -1) {
+                        indexOfSpace = message.length();
+                    }
+                    message = message.insert(indexOfSpace, "</a>");
+                    message = message.insert(indexOf, "<a class='blueX'>");
+                    newMessage = message.toString();
+
+                    startInd = indexOf + 21;
+                    lengthT = message.length();
+                    tracker++;
+                }
+                if (newMessage == "") {
+                } else {
+                    tweet.setTwit(newMessage);
+                }
+                tweets.add(tweet);
+            }
+            return tweets;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return null;
+    }
+    
 
 }

@@ -145,11 +145,11 @@ public class membershipServlet extends HttpServlet {
                 if (user.getEmail().equals(emailAddress1) && user.getPassword().equals(password1)) {
                     request.setAttribute("user", user);
                     session.setAttribute("user", user);
-
+                    ArrayList<Tweet> mentionTweet = TweetDB.selectTweetNotifications(user.getUserName());
                     ArrayList<hashtag> hashtags;
                     hashtags = TweetDB.SelectH();
                     session.setAttribute("hashtags", hashtags);
-                   
+                   session.setAttribute("mentionTweet", mentionTweet);
 
                     success = true;
                     ArrayList<User> users = new ArrayList<User>();
@@ -174,6 +174,15 @@ public class membershipServlet extends HttpServlet {
                     .getRequestDispatcher(url)
                     .forward(request, response);
 
+        }
+        if (action.equals("notifications")) {
+            url = "/notification.jsp";
+            
+             getServletContext()
+                    .getRequestDispatcher(url)
+                    .forward(request, response);
+
+            
         }
         if (action.equals("logout")) {
             User user = (User) session.getAttribute("user");

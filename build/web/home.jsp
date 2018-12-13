@@ -59,7 +59,7 @@
                 
                 <!-- Feed -->
                 <div class="Feed">
-                    <c:forEach items="${tweets}" var = "tweet">
+                    <c:forEach items="${tweets}" var="tweet">
                         <div class="tweetBlock">
                             <div class="userPic"></div>
                             <div class="feedUser"><h5>@${tweet.tweetUserID}</h5></div>
@@ -88,6 +88,25 @@
                         <div class="followBlock">                      
                             <div class="followName"><h2>${user.fullName}</h2></div>
                             <div class="followUser"><h2>@${user.userName}</h2></div>
+                             <c:set var="contains" value="false" />
+                            <c:forEach var="follow" items="${followedList}">
+                                <c:if test="${follow.userID eq user.userID}">
+                                    <c:set var="contains" value="true" />
+                                </c:if>
+                            </c:forEach>
+                            <form action="tweet" method="post"/>
+                            <c:choose>
+                                <c:when test="${contains eq true}">
+
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="">
+                                        <a href="tweet?action=follow_user&userID=${follow.userID}"> 
+                                            <i class="fas fa-user"></i>
+                                        </a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                             <div class="followIcon">
                                 <i class="fa fa-user"></i>
                             </div>

@@ -148,7 +148,7 @@ public class UserDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
 
-        String preparedSQL = "UPDATE user set loginTime = current_timestamp WHERE "
+        String preparedSQL = "UPDATE user set lastLogin = current_timestamp WHERE "
                 + "emailAddress= ? ";
         int Result = 0;
         try {

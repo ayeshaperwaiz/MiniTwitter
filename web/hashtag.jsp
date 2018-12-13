@@ -1,6 +1,6 @@
 <%-- 
-    Document   : notification
-    Created on : Dec 11, 2018, 2:06:42 PM
+    Document   : hashtag
+    Created on : Dec 12, 2018, 4:36:45 PM
     Author     : Nghi Phan
 --%>
 
@@ -36,15 +36,16 @@
                 <br/>
            </div>
                    <!-- Feed -->
-                <div class="Feed"> 
-                    <c:forEach items="${mentionTweet}" var = "tweet">
+                <div class="Feed">
+                    <c:forEach items="${hashTweets}" var = "tweet">
                         <div class="tweetBlock">
                             <div class="userPic"></div>
                             <div class="feedUser"><h5>@${tweet.tweetUserID}</h5></div>
                             <div class="feedTweet"><p>${tweet.twit}<p></div>
                             <div class="delLink">
-                               
-                                    
+                                <a href="tweet?action=deleteTweet&tweetID=${tweet.tweetID}"> 
+                                    <i class="glyphicon glyphicon-remove"></i> 
+                                </a>
                             </div>
                         </div>
                     </c:forEach>
@@ -57,3 +58,4 @@
     </body>
 
 </html>
+            
